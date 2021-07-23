@@ -19,3 +19,12 @@ a {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+.arrays div {
+  margin: 0 1rem;
+}
+.arrays div:first-child {
+  margin-left: 0;
+}
+.arrays div:last-child {
+  margin-right: 0;
+}

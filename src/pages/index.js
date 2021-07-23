@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import Link from "next/link"
 import { SearchForm } from "../features/searchForm/SearchForm"
 import UsersTable from "../components/UsersTable"
 
@@ -16,6 +17,14 @@ export default function Home() {
   return (
     <>
       <header className="px-4">
+        <nav>
+          <Link href="/">
+            <a className="px-4">Challenge: GitHub API</a>
+          </Link>
+          <Link href="/overlapping-items">
+            <a className="px-4">Challenge: Overlapping Item</a>
+          </Link>
+        </nav>
         <h1>Github API - Search (Users)</h1>
         <p>An example app of using the GitHub API to search for users.</p>
       </header>
