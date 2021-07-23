@@ -2,32 +2,25 @@ const UsersTable = ({ users, isSubmitting }) => {
   if (isSubmitting && users.length < 1) return <p>Submitting query...</p>
   if (!isSubmitting && users.length < 1) return <p>No results.</p>
   return (
-    <div style={{ position: "relative" }}>
-      {isSubmitting && (
-        <p style={{ position: "absolute", bottom: "100%", right: 0 }}>Updating query...</p>
-      )}
-      <div style={{ maxHeight: 500, overflowY: "scroll", position: "relative" }}>
-        <table style={{ position: "relative", width: "100%" }}>
+    <div className="relative">
+      {isSubmitting && <p className="absolute bottom-full right-0">Updating query...</p>}
+      <div className="max-h-64 overflow-y-scroll relative">
+        <table className="relative w-full">
           <thead>
             <tr>
-              <th style={{ position: "sticky", top: 0, backgroundColor: "#f7f7f7" }}>#</th>
-              <th style={{ position: "sticky", top: 0, backgroundColor: "#f7f7f7" }}>Avatar</th>
-              <th style={{ position: "sticky", top: 0, backgroundColor: "#f7f7f7" }}>Username</th>
-              <th style={{ position: "sticky", top: 0, backgroundColor: "#f7f7f7" }}>User Type</th>
-              <th style={{ position: "sticky", top: 0, backgroundColor: "#f7f7f7" }}>Score</th>
+              <th className="sticky top-0 bg-gray-100">#</th>
+              <th className="sticky top-0 bg-gray-100">Avatar</th>
+              <th className="sticky top-0 bg-gray-100">Username</th>
+              <th className="sticky top-0 bg-gray-100">User Type</th>
+              <th className="sticky top-0 bg-gray-100">Score</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center">
             {users?.map((user, index) => (
               <tr key={user.id}>
                 <td>{index + 1}</td>
                 <td>
-                  <img
-                    src={user.avatar_url}
-                    width="30"
-                    height="30"
-                    style={{ borderRadius: "50%", overflow: "hidden" }}
-                  />
+                  <img src={user.avatar_url} width="30" height="30" className="rounded-full mx-auto" />
                 </td>
                 <td>
                   <p>{user.login}</p>
