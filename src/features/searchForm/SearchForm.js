@@ -33,13 +33,13 @@ export function SearchForm({ setResults, setIsSubmitting }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    fetchFromGitHub(query)
+    fetchFromGitHub(query?.trim())
   }
 
   React.useEffect(() => {
     if (!isQuick) return
     if (query.length >= 3) {
-      debounceFetch(query)
+      debounceFetch(query?.trim())
     }
   }, [query])
 
