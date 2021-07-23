@@ -1,10 +1,17 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import { SearchForm } from "../features/searchForm/SearchForm"
 import UsersTable from "../components/UsersTable"
 
 export default function Home() {
+  const query = useSelector((state) => state.searchForm.query)
+
   const [results, setResults] = React.useState([])
   const [isSubmitting, setIsSubmitting] = React.useState(false)
+
+  React.useEffect(() => {
+    if (query.length === 0) setResults([])
+  }, [query])
 
   return (
     <>

@@ -15,13 +15,13 @@ export const searchFormSlice = createSlice({
       state.query = action.payload
     },
     setError: (state, action) => {
-      state.query = action.payload
+      state.error = action.payload
     },
     setIsSubmitting: (state, action) => {
       state.isSubmitting = action.payload
     },
     toggleIsQuick: (state) => {
-      state.isSubmitting = !state.isSubmitting
+      state.isQuick = !state.isQuick
     },
   },
 })

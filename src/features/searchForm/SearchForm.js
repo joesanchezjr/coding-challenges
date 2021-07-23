@@ -5,7 +5,6 @@ import { setQuery, setError, toggleIsQuick } from "./searchFormSlice"
 
 export function SearchForm({ setResults, setIsSubmitting }) {
   const query = useSelector((state) => state.searchForm.query)
-  // const isSubmitting = useSelector((state) => state.searchForm.isSubmitting)
   const isQuick = useSelector((state) => state.searchForm.isQuick)
   const error = useSelector((state) => state.searchForm.error)
   const dispatch = useDispatch()
@@ -38,10 +37,8 @@ export function SearchForm({ setResults, setIsSubmitting }) {
   }
 
   React.useEffect(() => {
-    if (query.length === 0) return setResults([])
-    if (query.length < 3) return
-
-    if (isQuick) {
+    if (!isQuick) return
+    if (query.length >= 3) {
       debounceFetch(query)
     }
   }, [query])
@@ -55,6 +52,13 @@ export function SearchForm({ setResults, setIsSubmitting }) {
             dispatch(setQuery(event.target.value))
           }}
         />
+        <button type="submit">Search</button>
+        {query.length >= 1 && (
+          <button type="button" onClick={() => dispatch(setQuery(""))}>
+            Clear
+          </button>
+        )}
+
         <br />
         <label>
           <input
@@ -66,11 +70,9 @@ export function SearchForm({ setResults, setIsSubmitting }) {
           />
           Enable quick search? (Makes requests to the GitHub API as you type)
         </label>
+
         <br />
-        <button type="button" onClick={() => dispatch(setQuery(""))}>
-          Clear Query & Results
-        </button>
-        <button type="submit">Submit</button>
+
         <br />
         {error && <p>{error}</p>}
       </form>
